@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: ai-voice-assistant
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: SECRET_KEY
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GEMINI_MODEL
+        value: gemini-2.5-flash
+      - key: OPENWEATHER_API_KEY
+        sync: false
+      - key: ASSISTANT_NAME
+        value: Astra
+      - key: APP_TIMEZONE
+        value: Asia/Kolkata
+      - key: CHAT_DB_PATH
+        value: data/chat_history.db
